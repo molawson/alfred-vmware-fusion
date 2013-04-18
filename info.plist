@@ -1,0 +1,259 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>bundleid</key>
+	<string>molawson-vmware-fusion</string>
+	<key>connections</key>
+	<dict>
+		<key>19857D45-C308-491E-A96A-39B7EC322E87</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>449ECCDB-D4E8-43EA-B478-78F412A18314</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+			</dict>
+		</array>
+		<key>449ECCDB-D4E8-43EA-B478-78F412A18314</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>584FE802-86F4-4F4A-A2DA-A4FFA9E2DF22</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+			</dict>
+		</array>
+		<key>457E7B21-3BB1-4CC4-B73A-274BBDA89C1B</key>
+		<array/>
+		<key>8ECBB7F8-22E4-46BB-8E0F-6B8803D5CDF5</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>B7AAC1D6-C2BE-4A5F-936E-6E92B7D82AC9</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+			</dict>
+		</array>
+		<key>B7AAC1D6-C2BE-4A5F-936E-6E92B7D82AC9</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>584FE802-86F4-4F4A-A2DA-A4FFA9E2DF22</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+			</dict>
+		</array>
+	</dict>
+	<key>createdby</key>
+	<string>Mo Lawson</string>
+	<key>description</key>
+	<string>Manage VMware Fusion virtual machines</string>
+	<key>disabled</key>
+	<false/>
+	<key>name</key>
+	<string>VMware Fusion</string>
+	<key>objects</key>
+	<array>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>argumenttype</key>
+				<integer>2</integer>
+				<key>escaping</key>
+				<integer>0</integer>
+				<key>keyword</key>
+				<string>vm list</string>
+				<key>runningsubtext</key>
+				<string>Finding VMs...</string>
+				<key>script</key>
+				<string>require 'vmware'
+
+puts list
+</string>
+				<key>subtext</key>
+				<string>What VMware Fusion virtual machines are currently running?</string>
+				<key>title</key>
+				<string>List VMs</string>
+				<key>type</key>
+				<integer>2</integer>
+				<key>withspace</key>
+				<false/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.scriptfilter</string>
+			<key>uid</key>
+			<string>457E7B21-3BB1-4CC4-B73A-274BBDA89C1B</string>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>escaping</key>
+				<integer>0</integer>
+				<key>script</key>
+				<string>require 'vmware'
+
+name, path = "{query}".split(':')
+
+vm = start(path)
+print "#{name} VM was started"</string>
+				<key>type</key>
+				<integer>2</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>449ECCDB-D4E8-43EA-B478-78F412A18314</string>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>argumenttype</key>
+				<integer>2</integer>
+				<key>escaping</key>
+				<integer>0</integer>
+				<key>keyword</key>
+				<string>vm start</string>
+				<key>runningsubtext</key>
+				<string>Finding VMs...</string>
+				<key>script</key>
+				<string>require 'vmware'
+
+# Directory containing VMware files (.vmwarevm)
+search_path = File.expand_path('~/Documents/Virtual Machines')
+
+puts find(search_path)</string>
+				<key>subtext</key>
+				<string>Start VMware Fusion virtual machine</string>
+				<key>title</key>
+				<string>Start VM</string>
+				<key>type</key>
+				<integer>2</integer>
+				<key>withspace</key>
+				<false/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.scriptfilter</string>
+			<key>uid</key>
+			<string>19857D45-C308-491E-A96A-39B7EC322E87</string>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>lastpathcomponent</key>
+				<false/>
+				<key>onlyshowifquerypopulated</key>
+				<false/>
+				<key>output</key>
+				<integer>0</integer>
+				<key>removeextension</key>
+				<false/>
+				<key>sticky</key>
+				<false/>
+				<key>text</key>
+				<string>{query}</string>
+				<key>title</key>
+				<string>VMware Fusion</string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.output.notification</string>
+			<key>uid</key>
+			<string>584FE802-86F4-4F4A-A2DA-A4FFA9E2DF22</string>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>escaping</key>
+				<integer>0</integer>
+				<key>script</key>
+				<string>require 'vmware'
+
+name, path = "{query}".split(':')
+
+suspend(path)
+print "#{name} VM was suspended"</string>
+				<key>type</key>
+				<integer>2</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>B7AAC1D6-C2BE-4A5F-936E-6E92B7D82AC9</string>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>argumenttype</key>
+				<integer>2</integer>
+				<key>escaping</key>
+				<integer>0</integer>
+				<key>keyword</key>
+				<string>vm suspend</string>
+				<key>runningsubtext</key>
+				<string>Finding VMs...</string>
+				<key>script</key>
+				<string>require 'vmware'
+
+puts list</string>
+				<key>subtext</key>
+				<string>Suspend running VMware Fusion virtual machine</string>
+				<key>title</key>
+				<string>Suspend VM</string>
+				<key>type</key>
+				<integer>2</integer>
+				<key>withspace</key>
+				<false/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.scriptfilter</string>
+			<key>uid</key>
+			<string>8ECBB7F8-22E4-46BB-8E0F-6B8803D5CDF5</string>
+		</dict>
+	</array>
+	<key>readme</key>
+	<string></string>
+	<key>uidata</key>
+	<dict>
+		<key>19857D45-C308-491E-A96A-39B7EC322E87</key>
+		<dict>
+			<key>ypos</key>
+			<real>140</real>
+		</dict>
+		<key>449ECCDB-D4E8-43EA-B478-78F412A18314</key>
+		<dict>
+			<key>ypos</key>
+			<real>140</real>
+		</dict>
+		<key>457E7B21-3BB1-4CC4-B73A-274BBDA89C1B</key>
+		<dict>
+			<key>ypos</key>
+			<real>10</real>
+		</dict>
+		<key>584FE802-86F4-4F4A-A2DA-A4FFA9E2DF22</key>
+		<dict>
+			<key>ypos</key>
+			<real>200</real>
+		</dict>
+		<key>8ECBB7F8-22E4-46BB-8E0F-6B8803D5CDF5</key>
+		<dict>
+			<key>ypos</key>
+			<real>270</real>
+		</dict>
+		<key>B7AAC1D6-C2BE-4A5F-936E-6E92B7D82AC9</key>
+		<dict>
+			<key>ypos</key>
+			<real>270</real>
+		</dict>
+	</dict>
+	<key>webaddress</key>
+	<string>http://github.com/molawson/alfred-vmware-fusion</string>
+</dict>
+</plist>
