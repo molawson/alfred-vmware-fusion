@@ -75,10 +75,9 @@
 				<key>runningsubtext</key>
 				<string>Finding VMs...</string>
 				<key>script</key>
-				<string>require 'vmware'
+				<string>require './vmware/alfred'
 
-puts list
-</string>
+puts Vmware::Alfred.list_running</string>
 				<key>subtext</key>
 				<string>What VMware Fusion virtual machines are currently running?</string>
 				<key>title</key>
@@ -92,6 +91,8 @@ puts list
 			<string>alfred.workflow.input.scriptfilter</string>
 			<key>uid</key>
 			<string>457E7B21-3BB1-4CC4-B73A-274BBDA89C1B</string>
+			<key>version</key>
+			<integer>0</integer>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -99,11 +100,11 @@ puts list
 				<key>escaping</key>
 				<integer>0</integer>
 				<key>script</key>
-				<string>require 'vmware'
+				<string>require './vmware/alfred'
 
 name, path = "{query}".split(':')
 
-vm = start(path)
+vm = Vmware::Alfred.start(path)
 print "#{name} VM was started"</string>
 				<key>type</key>
 				<integer>2</integer>
@@ -112,6 +113,8 @@ print "#{name} VM was started"</string>
 			<string>alfred.workflow.action.script</string>
 			<key>uid</key>
 			<string>449ECCDB-D4E8-43EA-B478-78F412A18314</string>
+			<key>version</key>
+			<integer>0</integer>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -125,12 +128,14 @@ print "#{name} VM was started"</string>
 				<key>runningsubtext</key>
 				<string>Finding VMs...</string>
 				<key>script</key>
-				<string>require 'vmware'
+				<string>require './vmware/alfred'
 
-# Directory containing VMware files (.vmwarevm)
-search_path = File.expand_path('~/Documents/Virtual Machines')
+# Array of directories containing VMware files (.vmwarevm)
+search_paths = [
+  File.expand_path('~/Documents/Virtual Machines'),
+]
 
-puts find(search_path)</string>
+puts Vmware::Alfred.list_idle(search_paths)</string>
 				<key>subtext</key>
 				<string>Start VMware Fusion virtual machine</string>
 				<key>title</key>
@@ -144,6 +149,8 @@ puts find(search_path)</string>
 			<string>alfred.workflow.input.scriptfilter</string>
 			<key>uid</key>
 			<string>19857D45-C308-491E-A96A-39B7EC322E87</string>
+			<key>version</key>
+			<integer>0</integer>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -167,6 +174,8 @@ puts find(search_path)</string>
 			<string>alfred.workflow.output.notification</string>
 			<key>uid</key>
 			<string>584FE802-86F4-4F4A-A2DA-A4FFA9E2DF22</string>
+			<key>version</key>
+			<integer>0</integer>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -174,11 +183,11 @@ puts find(search_path)</string>
 				<key>escaping</key>
 				<integer>0</integer>
 				<key>script</key>
-				<string>require 'vmware'
+				<string>require './vmware/alfred'
 
 name, path = "{query}".split(':')
 
-suspend(path)
+Vmware::Alfred.suspend(path)
 print "#{name} VM was suspended"</string>
 				<key>type</key>
 				<integer>2</integer>
@@ -187,6 +196,8 @@ print "#{name} VM was suspended"</string>
 			<string>alfred.workflow.action.script</string>
 			<key>uid</key>
 			<string>B7AAC1D6-C2BE-4A5F-936E-6E92B7D82AC9</string>
+			<key>version</key>
+			<integer>0</integer>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -200,9 +211,9 @@ print "#{name} VM was suspended"</string>
 				<key>runningsubtext</key>
 				<string>Finding VMs...</string>
 				<key>script</key>
-				<string>require 'vmware'
+				<string>require './vmware/alfred'
 
-puts list</string>
+puts Vmware::Alfred.list_running</string>
 				<key>subtext</key>
 				<string>Suspend running VMware Fusion virtual machine</string>
 				<key>title</key>
@@ -216,6 +227,8 @@ puts list</string>
 			<string>alfred.workflow.input.scriptfilter</string>
 			<key>uid</key>
 			<string>8ECBB7F8-22E4-46BB-8E0F-6B8803D5CDF5</string>
+			<key>version</key>
+			<integer>0</integer>
 		</dict>
 	</array>
 	<key>readme</key>
